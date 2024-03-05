@@ -2,7 +2,7 @@ let boxes = document.querySelectorAll('.box');
 let restBtn = document.querySelector('.reset');
 let message= document.querySelector('#msg');
 let turnO = true;
-
+let i=0;
 let winPattern = [
     [0, 1, 2],
     [0, 3, 6],
@@ -21,6 +21,7 @@ function resetGame()
     enabled();
     message.innerText="";
     restBtn.innerText="Reset Game";
+    i=0;
 }
 
 
@@ -31,15 +32,22 @@ boxes.forEach((box) => {
         {
             box.textContent="O";
             turnO=false;
+            i++;
 
         }
         else
         {
             box.textContent="X";
             turnO=true;
+            i++;
         }
         box.disabled=true;
         checkWinner();
+        if(i===9)
+        {
+            message.innerText="Game is draw";
+            restBtn.innerText=" Start New Game";
+        }
     });
 });
 
